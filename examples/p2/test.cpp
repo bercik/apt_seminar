@@ -1,23 +1,24 @@
 #include "gtest/gtest.h"
-#include "sqrt.h"
+#include "sum.h"
 
-TEST(SqrtTest, PositiveArgs)
+TEST(SumTest, PositiveArgs)
 {
-   EXPECT_FLOAT_EQ(2.0f, sqrt(4.0f));
-   EXPECT_FLOAT_EQ(3.0f, sqrt(9.0f));
-   EXPECT_FLOAT_EQ(5.196152423f, sqrt(27.0f));
-   EXPECT_FLOAT_EQ(0.1f, sqrt(0.01f));
+   ASSERT_EQ(4, sum(3, 1));
+   ASSERT_EQ(5, sum(2, 3));
 }
 
-TEST(SqrtTest, ZeroVal)
+TEST(SumTest, NegativeArgs)
 {
-   EXPECT_THROW(sqrt(0.0f), std::invalid_argument);
+   ASSERT_EQ(-4, sum(-3, -1));
+   ASSERT_EQ(-5, sum(-2, -3));
 }
 
-TEST(SqrtTest, DISABLED_NegativeArgs)
+TEST(SumTest, MixedArgs)
 {
-   EXPECT_THROW(sqrt(-2.0f), std::invalid_argument);
-   EXPECT_THROW(sqrt(-6.0f), std::invalid_argument);
+   ASSERT_EQ(0, sum(2, -2));
+   EXPECT_EQ(5, sum(4, -1)) << " don't worry, this test is badly written"; // BAD TEST
+   ASSERT_EQ(1, sum(-2, 2)) << " this test will execute"; // BAD TEST
+   ASSERT_EQ(-4, sum(-4, 0)) << " this won't";
 }
 
 int main(int argc, char **argv) 

@@ -7,4 +7,4 @@ fi
 
 test_file_path=$1
 
-g++ -std=c++1y -Wall $test_file_path -lgtest && ./a.out "${@:2}"
+g++ -std=c++1y -Wall $test_file_path -lgtest -pthread && ./a.out "${@:2}"

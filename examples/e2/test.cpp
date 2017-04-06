@@ -15,10 +15,10 @@ TEST(SumTest, NegativeArgs)
 
 TEST(SumTest, MixedArgs)
 {
-   ASSERT_EQ(0, sum(2, -2));
+   ASSERT_EQ(0, sum(2, -2)) << " this wouldn't be printed";
    EXPECT_EQ(5, sum(4, -1)) << " don't worry, this test is badly written"; // BAD TEST
    ASSERT_EQ(1, sum(-2, 2)) << " this test will execute"; // BAD TEST
-   ASSERT_EQ(-4, sum(-4, 0)) << " this won't";
+   ASSERT_EQ(-4, sum(-5, 0)) << " this won't"; // BAD TEST
 }
 
 int main(int argc, char **argv) 

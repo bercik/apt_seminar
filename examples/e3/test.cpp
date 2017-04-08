@@ -1,7 +1,7 @@
 #include "gtest/gtest.h"
 #include "sqrt.h"
 
-TEST(SqrtTest, PositiveArgs)
+TEST(SqrtTest, Should_ReturnResult_When_PositiveArgs)
 {
     EXPECT_FLOAT_EQ(2.0f, sqrt(4.0f));
     EXPECT_FLOAT_EQ(3.0f, sqrt(9.0f));
@@ -9,12 +9,12 @@ TEST(SqrtTest, PositiveArgs)
     EXPECT_FLOAT_EQ(0.1f, sqrt(0.01f));
 }
 
-TEST(SqrtTest, ZeroVal)
+TEST(SqrtTest, Should_ThrowException_When_ZeroVal)
 {
     EXPECT_THROW(sqrt(0.0f), std::invalid_argument);
 }
 
-TEST(SqrtTest, DISABLED_NegativeArgs)
+TEST(SqrtTest, DISABLED_Should_ThrowException_When_NegativeArgs)
 {
     EXPECT_THROW(sqrt(-2.0f), std::invalid_argument);
     EXPECT_THROW(sqrt(-6.0f), std::invalid_argument);

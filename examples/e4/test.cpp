@@ -1,7 +1,7 @@
 #include "gtest/gtest.h"
 #include "panic.h"
 
-TEST(PanicTest, TestPanic)
+TEST(PanicTest, Should_ExitWithOne_When_Executed)
 {
     ASSERT_EXIT(panic("This is just a test"), ::testing::ExitedWithCode(1), 
             "This is just a test");

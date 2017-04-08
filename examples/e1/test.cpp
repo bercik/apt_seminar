@@ -1,7 +1,7 @@
 #include "gtest/gtest.h"
 #include "sum.h"
 
-TEST(SumTest, PositiveArgs)
+TEST(SumTest, Should_ReturnResult_When_PositiveArgs)
 {
     ASSERT_EQ(4, sum(3, 1));
 }

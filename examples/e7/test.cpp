@@ -15,48 +15,131 @@ using ::testing::ExpectationSet;
 class StudentsDataSummaryTest : public ::testing::Test
 {
     protected:
-        StudentsDataSummaryTest() : _sdp(), _sds(_sdp) {}
+        StudentsDataSummaryTest() : _sdpMock(), _sds(_sdpMock) {}
 
-        MockIStudentsDataProvider _sdp;
+        MockIStudentsDataProvider _sdpMock;
         StudentsDataSummary _sds;
 
         std::vector<Student> _students
                 { {18, 3}, {20, 4}, {17, 2}, {21, 5}, {20, 3} };
 };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 TEST_F(StudentsDataSummaryTest, 
         Should_ThrowException_When_AverageAgeNoStudents)
 {
-    EXPECT_CALL(_sdp, hasNext())
-        .Times(1)
+    EXPECT_CALL(_sdpMock, hasNext())
+        // .Times(1)
         .WillOnce(Return(false));
 
     EXPECT_THROW(_sds.averageAge(), std::invalid_argument);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 TEST_F(StudentsDataSummaryTest, 
         Should_ReturnResult_When_AverageAgeSomeStudents)
 {
     InSequence dummy;
 
-    for (Student s : _students)
+    for (size_t i = 0; i < _students.size(); ++i)
     {
-        EXPECT_CALL(_sdp, hasNext())
-            .WillOnce(Return(true))
-            .RetiresOnSaturation();
+        EXPECT_CALL(_sdpMock, hasNext())
+            .WillOnce(Return(true));
 
-        EXPECT_CALL(_sdp, getNext())
-            .WillOnce(Return(s))
-            .RetiresOnSaturation();
+        EXPECT_CALL(_sdpMock, getNext())
+            .WillOnce(ReturnRef(_students[i]));
     }
 
-    EXPECT_CALL(_sdp, hasNext())
+    EXPECT_CALL(_sdpMock, hasNext())
         .WillOnce(Return(false));
-    EXPECT_CALL(_sdp, reset())
+    EXPECT_CALL(_sdpMock, reset())
         .Times(1);
 
     EXPECT_EQ(_sds.averageAge(), 19.2);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 TEST_F(StudentsDataSummaryTest, 
         Should_ThrowException_When_NumberOfStudentsAboveGradeMinGradeBelowTwoOrAboveFive)
@@ -66,63 +149,173 @@ TEST_F(StudentsDataSummaryTest,
     EXPECT_THROW(_sds.numberOfStudentsAboveGrade(0), std::invalid_argument);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 TEST_F(StudentsDataSummaryTest, 
         Should_ReturnZero_When_NumberOfStudensAboveGradeNoStudents)
 {
-    EXPECT_CALL(_sdp, hasNext())
+    EXPECT_CALL(_sdpMock, hasNext())
         .Times(2)
         .WillRepeatedly(Return(false));
 
-    EXPECT_CALL(_sdp, reset())
+    EXPECT_CALL(_sdpMock, reset())
         .Times(2);
 
     EXPECT_DOUBLE_EQ(_sds.numberOfStudentsAboveGrade(3), 0.0);;
     EXPECT_DOUBLE_EQ(_sds.numberOfStudentsAboveGrade(2), 0.0);;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 TEST_F(StudentsDataSummaryTest, 
         Should_ReturnResult_When_NumberOfStudensAboveGradeSomeStudents)
 {
     InSequence dummy;
 
-    for (Student s : _students)
+    for (size_t i = 0; i < _students.size(); ++i)
     {
-        EXPECT_CALL(_sdp, hasNext())
+        EXPECT_CALL(_sdpMock, hasNext())
             .WillOnce(Return(true))
             .RetiresOnSaturation();
 
-        EXPECT_CALL(_sdp, getNext())
-            .WillOnce(Return(s))
+        EXPECT_CALL(_sdpMock, getNext())
+            .WillOnce(ReturnRef(_students[i]))
             .RetiresOnSaturation();
     }
 
-    EXPECT_CALL(_sdp, hasNext())
+    EXPECT_CALL(_sdpMock, hasNext())
         .WillOnce(Return(false));
-    EXPECT_CALL(_sdp, reset())
+    EXPECT_CALL(_sdpMock, reset())
         .Times(1);
     
     EXPECT_EQ(_sds.numberOfStudentsAboveGrade(3), 2);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 TEST_F(StudentsDataSummaryTest, 
         Should_Pass_When_SomeArguments)
 {
-    EXPECT_CALL(_sdp, foo(10, 20.0))
+    EXPECT_CALL(_sdpMock, foo(10, 20.0))
         .Times(AtLeast(1));
 
     // failure 
-    EXPECT_CALL(_sdp, foo(_, _))
+    EXPECT_CALL(_sdpMock, foo(_, _))
         .Times(AtMost(2));
 
     // no failure
-    // EXPECT_CALL(_sdp, foo(_, _))
+    // EXPECT_CALL(_sdpMock, foo(_, _))
     //     .Times(AtMost(2))
     //     .RetiresOnSaturation();
 
-    EXPECT_EQ(_sdp.foo(10, 20.0), 0);
-    EXPECT_EQ(_sdp.foo(10, 20.0), 0);
-    EXPECT_EQ(_sdp.foo(10, 20.0), 0);
+    EXPECT_EQ(_sdpMock.foo(10, 20.0), 0);
+    EXPECT_EQ(_sdpMock.foo(10, 20.0), 0);
+    EXPECT_EQ(_sdpMock.foo(10, 20.0), 0);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 int main(int argc, char **argv) 
 {

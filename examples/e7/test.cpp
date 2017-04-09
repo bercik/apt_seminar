@@ -227,12 +227,10 @@ TEST_F(StudentsDataSummaryTest,
     for (size_t i = 0; i < _students.size(); ++i)
     {
         EXPECT_CALL(_sdpMock, hasNext())
-            .WillOnce(Return(true))
-            .RetiresOnSaturation();
+            .WillOnce(Return(true));
 
         EXPECT_CALL(_sdpMock, getNext())
-            .WillOnce(ReturnRef(_students[i]))
-            .RetiresOnSaturation();
+            .WillOnce(ReturnRef(_students[i]));
     }
 
     EXPECT_CALL(_sdpMock, hasNext())
@@ -272,7 +270,7 @@ TEST_F(StudentsDataSummaryTest,
 
 
 TEST_F(StudentsDataSummaryTest, 
-        Should_Pass_When_SomeArguments)
+        Should_Pass_When_FooSomeArguments)
 {
     EXPECT_CALL(_sdpMock, foo(10, 20.0))
         .Times(AtLeast(1));

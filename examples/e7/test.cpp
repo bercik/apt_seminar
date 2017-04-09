@@ -7,6 +7,10 @@
 using ::testing::Return;
 using ::testing::ReturnRef;
 using ::testing::InSequence;
+using ::testing::AtMost;
+using ::testing::AtLeast;
+using ::testing::_;
+using ::testing::ExpectationSet;
 
 class StudentsDataSummaryTest : public ::testing::Test
 {
@@ -16,7 +20,7 @@ class StudentsDataSummaryTest : public ::testing::Test
         MockIStudentsDataProvider _sdp;
         StudentsDataSummary _sds;
 
-        std::vector<Student> students
+        std::vector<Student> _students
                 { {18, 3}, {20, 4}, {17, 2}, {21, 5}, {20, 3} };
 };
 
@@ -35,7 +39,7 @@ TEST_F(StudentsDataSummaryTest,
 {
     InSequence dummy;
 
-    for (Student s : students)
+    for (Student s : _students)
     {
         EXPECT_CALL(_sdp, hasNext())
             .WillOnce(Return(true))
@@ -81,7 +85,7 @@ TEST_F(StudentsDataSummaryTest,
 {
     InSequence dummy;
 
-    for (Student s : students)
+    for (Student s : _students)
     {
         EXPECT_CALL(_sdp, hasNext())
             .WillOnce(Return(true))
@@ -98,6 +102,26 @@ TEST_F(StudentsDataSummaryTest,
         .Times(1);
     
     EXPECT_EQ(_sds.numberOfStudentsAboveGrade(3), 2);
+}
+
+TEST_F(StudentsDataSummaryTest, 
+        Should_Pass_When_SomeArguments)
+{
+    EXPECT_CALL(_sdp, foo(10, 20.0))
+        .Times(AtLeast(1));
+
+    // failure 
+    EXPECT_CALL(_sdp, foo(_, _))
+        .Times(AtMost(2));
+
+    // no failure
+    // EXPECT_CALL(_sdp, foo(_, _))
+    //     .Times(AtMost(2))
+    //     .RetiresOnSaturation();
+
+    EXPECT_EQ(_sdp.foo(10, 20.0), 0);
+    EXPECT_EQ(_sdp.foo(10, 20.0), 0);
+    EXPECT_EQ(_sdp.foo(10, 20.0), 0);
 }
 
 int main(int argc, char **argv) 

@@ -20,7 +20,7 @@ class IStudentsDataProvider
         virtual void reset() = 0;
 
         // unused method
-        virtual void foo(int a, double b) = 0;
+        virtual int foo(int a, double b) = 0;
 };
 
 class MockIStudentsDataProvider : public IStudentsDataProvider
@@ -30,7 +30,7 @@ class MockIStudentsDataProvider : public IStudentsDataProvider
         MOCK_METHOD0(getNext, Student());
         MOCK_METHOD0(reset, void());
 
-        MOCK_METHOD2(foo, void(int a, double b));
+        MOCK_METHOD2(foo, int(int a, double b));
 };
 
 #endif

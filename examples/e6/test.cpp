@@ -17,7 +17,7 @@ class VectorTest : public ::testing::Test
 typedef ::testing::Types<double, float, int> MyTypes;
 TYPED_TEST_CASE(VectorTest, MyTypes);
 
-TYPED_TEST(VectorTest, Distance)
+TYPED_TEST(VectorTest, Should_ReturnResult_WhenDistance)
 {
     EXPECT_DOUBLE_EQ(this->_v1.distance(), 5.0);
     EXPECT_DOUBLE_EQ(this->_v2.distance(), 5.0);
@@ -25,15 +25,19 @@ TYPED_TEST(VectorTest, Distance)
     EXPECT_DOUBLE_EQ(this->_v4.distance(), 5.0);
 }
 
-TYPED_TEST(VectorTest, EqualNotEqualOperator)
+TYPED_TEST(VectorTest, Should_ReturnResult_WhenEqualOperator)
 {
     EXPECT_EQ(this->_v1, this->_v2); // BAD TEST
-    EXPECT_NE(this->_v1, this->_v3);
-    EXPECT_NE(this->_v2, this->_v3);
     EXPECT_EQ(this->_v1, this->_v4); 
 
     Vector<TypeParam> _v5(0.0, 0.0);
     EXPECT_EQ(this->_v3, _v5);
+}
+
+TYPED_TEST(VectorTest, Should_ReturnResult_WhenNotEqualOperator)
+{
+    EXPECT_NE(this->_v1, this->_v3);
+    EXPECT_NE(this->_v2, this->_v3);
 }
 
 int main(int argc, char **argv) 

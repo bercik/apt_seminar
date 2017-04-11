@@ -14,7 +14,7 @@ class VectorTest : public ::testing::Test
         const Vector _v4;
 };
 
-TEST_F(VectorTest, Distance)
+TEST_F(VectorTest, Should_ReturnResult_WhenDistance)
 {
     EXPECT_DOUBLE_EQ(_v1.distance(), 5.0);
     EXPECT_DOUBLE_EQ(_v2.distance(), 5.0);
@@ -22,12 +22,16 @@ TEST_F(VectorTest, Distance)
     EXPECT_DOUBLE_EQ(_v4.distance(), 5.0);
 }
 
-TEST_F(VectorTest, EqualNotEqualOperator)
+TEST_F(VectorTest, Should_ReturnResult_WhenEqualOperator)
 {
     EXPECT_EQ(_v1, _v2); // BAD TEST
+    EXPECT_EQ(_v1, _v4); 
+}
+
+TEST_F(VectorTest, Should_ReturnResult_WhenNotEqualOperator)
+{
     EXPECT_NE(_v1, _v3);
     EXPECT_NE(_v2, _v3);
-    EXPECT_EQ(_v1, _v4); 
 }
 
 int main(int argc, char **argv) 

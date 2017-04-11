@@ -3,12 +3,11 @@
 #include <iostream>
 #include <algorithm>
 
-std::string reverseString(const std::string& str)
+std::string reverseString(std::string str)
 {
-    std::string reversed_str(str);
-    std::reverse(reversed_str.begin(), reversed_str.end());
+    std::reverse(str.begin(), str.end());
 
-    return reversed_str;
+    return str;
 }
 
 bool isPalindrome(const std::string& str)

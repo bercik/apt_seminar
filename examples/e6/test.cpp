@@ -17,12 +17,12 @@ class VectorTest : public ::testing::Test
 typedef ::testing::Types<double, float, int> MyTypes;
 TYPED_TEST_CASE(VectorTest, MyTypes);
 
-TYPED_TEST(VectorTest, Should_ReturnResult_WhenDistance)
+TYPED_TEST(VectorTest, Should_ReturnResult_WhenLength)
 {
-    EXPECT_DOUBLE_EQ(this->_v1.distance(), 5.0);
-    EXPECT_DOUBLE_EQ(this->_v2.distance(), 5.0);
-    EXPECT_DOUBLE_EQ(this->_v3.distance(), 0.0);
-    EXPECT_DOUBLE_EQ(this->_v4.distance(), 5.0);
+    EXPECT_DOUBLE_EQ(this->_v1.length(), 5.0);
+    EXPECT_DOUBLE_EQ(this->_v2.length(), 5.0);
+    EXPECT_DOUBLE_EQ(this->_v3.length(), 0.0);
+    EXPECT_DOUBLE_EQ(this->_v4.length(), 5.0);
 }
 
 TYPED_TEST(VectorTest, Should_ReturnResult_WhenEqualOperator)

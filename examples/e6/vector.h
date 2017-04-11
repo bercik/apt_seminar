@@ -9,7 +9,7 @@ class Vector
     public:
         Vector(T x, T y) : _x(x), _y(y) {}
 
-        T distance() const
+        T length() const
         {
             return sqrt(_x*_x + _y*_y);
         }

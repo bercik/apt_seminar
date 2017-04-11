@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites tests="3" failures="1" disabled="0" errors="0" timestamp="2017-04-06T22:27:48" time="0" name="AllTests">
-  <testsuite name="SumTest" tests="3" failures="1" disabled="0" errors="0" time="0">
-    <testcase name="PositiveArgs" status="run" time="0" classname="SumTest" />
-    <testcase name="NegativeArgs" status="run" time="0" classname="SumTest" />
-    <testcase name="MixedArgs" status="run" time="0" classname="SumTest">
-      <failure message="p2/test.cpp:19&#x0A;      Expected: 5&#x0A;To be equal to: sum(4, -1)&#x0A;      Which is: 3&#x0A; don&apos;t worry, this test is badly written" type=""><![CDATA[p2/test.cpp:19
+<testsuites tests="3" failures="1" disabled="0" errors="0" timestamp="2017-04-11T12:49:03" time="0.001" name="AllTests">
+  <testsuite name="SumTest" tests="3" failures="1" disabled="0" errors="0" time="0.001">
+    <testcase name="Should_ReturnResult_When_PositiveArgs" status="run" time="0" classname="SumTest" />
+    <testcase name="Should_ReturnResult_When_NegativeArgs" status="run" time="0" classname="SumTest" />
+    <testcase name="Should_ReturnResult_When_MixedArgs" status="run" time="0" classname="SumTest">
+      <failure message="e2/test.cpp:19&#x0A;      Expected: 5&#x0A;To be equal to: sum(4, -1)&#x0A;      Which is: 3&#x0A; don&apos;t worry, this test is badly written" type=""><![CDATA[e2/test.cpp:19
       Expected: 5
 To be equal to: sum(4, -1)
       Which is: 3
  don't worry, this test is badly written]]></failure>
-      <failure message="p2/test.cpp:20&#x0A;      Expected: 1&#x0A;To be equal to: sum(-2, 2)&#x0A;      Which is: 0&#x0A; this test will execute" type=""><![CDATA[p2/test.cpp:20
+      <failure message="e2/test.cpp:21&#x0A;      Expected: 1&#x0A;To be equal to: sum(-2, 2)&#x0A;      Which is: 0&#x0A; this test will execute" type=""><![CDATA[e2/test.cpp:21
       Expected: 1
 To be equal to: sum(-2, 2)
       Which is: 0

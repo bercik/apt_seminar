@@ -14,12 +14,12 @@ class VectorTest : public ::testing::Test
         const Vector _v4;
 };
 
-TEST_F(VectorTest, Should_ReturnResult_WhenDistance)
+TEST_F(VectorTest, Should_ReturnResult_WhenLength)
 {
-    EXPECT_DOUBLE_EQ(_v1.distance(), 5.0);
-    EXPECT_DOUBLE_EQ(_v2.distance(), 5.0);
-    EXPECT_DOUBLE_EQ(_v3.distance(), 0.0);
-    EXPECT_DOUBLE_EQ(_v4.distance(), 5.0);
+    EXPECT_DOUBLE_EQ(_v1.length(), 5.0);
+    EXPECT_DOUBLE_EQ(_v2.length(), 5.0);
+    EXPECT_DOUBLE_EQ(_v3.length(), 0.0);
+    EXPECT_DOUBLE_EQ(_v4.length(), 5.0);
 }
 
 TEST_F(VectorTest, Should_ReturnResult_WhenEqualOperator)

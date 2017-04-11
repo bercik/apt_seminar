@@ -8,7 +8,7 @@ class Vector
     public:
         Vector(double x, double y) : _x(x), _y(y) {}
 
-        double distance() const
+        double length() const
         {
             return sqrt(_x*_x + _y*_y);
         }
@@ -23,12 +23,12 @@ class Vector
             return !this->operator==(vect);
         }
 
-        friend std::ostream& operator<<(std::ostream& os,
-                const Vector& vect)
-        {
-            os << "(" << vect._x << ", " << vect._y << ")";
-            return os;
-        }
+        // friend std::ostream& operator<<(std::ostream& os,
+        //         const Vector& vect)
+        // {
+        //     os << "(" << vect._x << ", " << vect._y << ")";
+        //     return os;
+        // }
 
     private:
         const double _x, _y;

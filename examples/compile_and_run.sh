@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "$#" -lt 1 ]; then
-   echo "Usage: $0 folder_with_test.cpp [arguments_to_gtest]"
+   echo "Usage: $0 folder_with_test [arguments_to_gtest]"
    exit -1
 fi
 
